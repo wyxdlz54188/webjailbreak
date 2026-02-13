@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    </meta>
+    <title>Carbon</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0">
+    </meta>
+    <script src="wkloader.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .about {
+            margin-bottom: 30px;
+        }
+
+        .wrapper {
+            margin-bottom: 30px;
+        }
+
+        .button {
+            background-color: #007AFF;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #005BB5;
+        }
+
+        .changelog {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="beeg.mobileconfig">Install certs</a>
+    <div class="about">
+        <h1>Carbon</h1>
+        <h2>@mineekdev & @staturnzdev</h2>
+        <h2>iOS 8.0-9.3.6, 32 bit</h2>
+        <h3>7ffdbd2</h3>
+    </div>
+    <div class="wrapper">
+        <button class="button" onclick="this.innerText='Exploiting'; setTimeout(function() { run(); }, 50)">Run</button>
+    </div>
+    <div class="changelog">
+        <h2>Changelog</h2>
+<ul>
+  <li>7ffdbd2 - try to fix jsc untether (2026-01-25 10:21:39 +0100)</li>
+  <li>f3028f7 - add auto untether for 8.0-9.3.4 (2026-01-23 23:04:58 +0100)</li>
+  <li>afa80a3 - add basic version check (2026-01-23 11:18:11 +0000)</li>
+  <li>84e7968 - make button say exploiting after pressing (2026-01-18 21:24:56 +0000)</li>
+  <li>958696d - update website to reflect new version support (2026-01-18 21:52:19 +0100)</li>
+</ul>
+    </div>
+
+    <script>
+        function is32BitIOS() {
+            if (!/iP(hone|od|ad)/.test(navigator.platform)) return false;
+            var match = navigator.appVersion.match(/OS (\d+)_/);
+            var version = match ? parseInt(match[1], 10) : null;
+            if (version !== 8 && version !== 9) return false;
+
+            return true;
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+            var exploitButton = document.querySelector('.button');
+
+            if (is32BitIOS()) {
+                console.log("This is a 32-bit device running iOS 8 or 9.");
+                exploitButton.disabled = false;
+            } else {
+                console.log("This is NOT a 32-bit device on iOS 8/9.");
+                exploitButton.disabled = true;
+                exploitButton.innerText = "Incompatible Device";
+                exploitButton.style.backgroundColor = "#999";
+                exploitButton.style.cursor = "not-allowed";
+            }
+        });
+    </script>
+</body>
+
+</html>
